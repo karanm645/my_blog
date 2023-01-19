@@ -14,5 +14,6 @@ RSpec.describe "Pages", type: :feature do
 
       expect(current_path).to eq(about_path)
     end 
+
   end
 end
