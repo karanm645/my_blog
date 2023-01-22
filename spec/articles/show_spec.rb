@@ -8,9 +8,9 @@ RSpec.describe "Article Show Page", type: :feature do
       
       visit articles_path 
 
-      click_link "read"
+      click_link "show"
 
-      visit "/articles/#{1}"
+      visit article_path(1)
 
       expect(page).to have_content(article_1.description)
     end
