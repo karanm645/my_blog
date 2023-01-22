@@ -16,7 +16,7 @@ RSpec.describe "Articles", type: :feature do
       fill_in 'Description', with: 'my first description'
       click_button 'Submit'
 
-      # visit articles_path 
+      visit articles_path 
       expect(current_path).to eq(articles_path)
 
       expect(page).to have_content('my first blog post')

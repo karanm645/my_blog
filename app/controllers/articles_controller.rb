@@ -9,9 +9,11 @@ class ArticlesController < ApplicationController
 
   def create 
     @article = Articles.new(articles_param)
-    @article.save
-    
-    redirect_to articles_path
+    if @article.save
+      redirect_to articles_path
+    else
+      render :new
+    end 
   end 
 
   def articles_param
