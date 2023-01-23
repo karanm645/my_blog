@@ -21,5 +21,14 @@ RSpec.describe "Articles", type: :feature do
 
       expect(page).to have_content('my first blog post')
     end 
+
+    it 'back link to articles index page' do 
+      @article_1 = Articles.create(id: 1, title: "second article", description: "ioewajiofnuiewfiopfewahiupewaoijfioweap")
+
+      visit new_article_path
+      click_link "Back"
+
+      expect(current_path).to eq(articles_path)
+    end 
   end 
 end 
