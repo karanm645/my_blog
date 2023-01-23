@@ -3,11 +3,12 @@ class ArticlesController < ApplicationController
     @articles = Articles.all
   end 
 
-  def show
-    @article = Articles.find(params[:id])
-  end 
   def new
     @article = Articles.new 
+  end 
+
+  def show
+    @article = Articles.find(params[:id])
   end 
 
   def create 
@@ -29,6 +30,12 @@ class ArticlesController < ApplicationController
     @article.save
     redirect_to articles_path(@article)
   end 
+
+  def destroy 
+    @article = Articles.find(params[:id])
+    @article.destroy 
+    redirect_to articles_path
+  end
 
   def articles_param
     params.require(:articles).permit(:title, :description)

@@ -1,6 +1,6 @@
 <h1>Create an article</h1>
 
-<%= form_with scope: :articles, url: articles_path, method: :post do |form| %>
+<%= form_with scope: :articles, url: articles_path do |form| %>
 
   <p>
     <%= form.label :title %>
@@ -11,6 +11,6 @@
     <%= form.text_field :description %>
   </p>
 
-  <%= form.submit "Submit" %>
-  <%= link_to "Back", articles_path %>
+  <%= form.submit "update" %>
 <% end %>
+  <p><%= link_to "Back", articles_path %></p>
