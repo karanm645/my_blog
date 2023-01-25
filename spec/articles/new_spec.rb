@@ -14,7 +14,7 @@ RSpec.describe "Articles", type: :feature do
 
       fill_in 'Title', with: 'my first blog post'
       fill_in 'Description', with: 'my first description'
-      click_button 'update'
+      click_button 'create'
 
       visit articles_path 
       expect(current_path).to eq(articles_path)

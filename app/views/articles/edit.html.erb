@@ -1,10 +1,15 @@
+<%= render 'layouts/navigation' %>
 <%= form_with scope: :articles, url: article_path(@article), method: :patch do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
 
-  <%= f.submit "update" %>
+  <%= f.submit "update", class: "btn btn-primary" %>
+  <%= link_to "Back", articles_path, class: "btn btn-primary" %>
 <% end  %>
-  <%= link_to "Back", articles_path %>
