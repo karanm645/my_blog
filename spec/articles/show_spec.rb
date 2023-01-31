@@ -4,38 +4,41 @@ RSpec.describe "Article Show Page", type: :feature do
   describe "when i visit the articles show page" do 
     
     it "shows the article title and description" do 
-      article_1 = Articles.create!(id: 1, title: "My first blog", description: "fewafewfawefawefeawfewaf")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
       
       visit articles_path 
 
-      click_link "show"
+      click_link article_1.title
 
-      visit article_path(1)
+      visit article_path(article_1.id)
 
       expect(page).to have_content(article_1.description)
     end
 
     it 'back link to articles index page' do 
-      @article_1 = Articles.create(id: 1, title: "second article", description: "ioewajiofnuiewfiopfewahiupewaoijfioweap")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
 
-      visit article_path(1)
+      visit article_path(article_1.id)
       click_link "Back"
 
       expect(current_path).to eq(articles_path)
     end 
 
     it 'has a link to edit the article' do 
-      @article_1 = Articles.create(id: 1, title: "second article", description: "ioewajiofnuiewfiopfewahiupewaoijfioweap")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
       
-      visit article_path(1)
+      visit article_path(article_1.id)
 
-      click_link "edit"
+      click_link "Edit"
 
-      visit edit_article_path(1)
+      visit edit_article_path(article_1.id)
 
       fill_in 'Title', with: "third article"
       fill_in 'Description', with: "zzzfjiewofjieolslslslslslsllssl"
-      click_button "update"
+      click_button "Update"
 
       visit articles_path
       expect(current_path).to eq(articles_path)

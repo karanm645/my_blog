@@ -1,43 +1,49 @@
 class ArticlesController < ApplicationController
   def index 
-    @articles = Articles.all
+    @articles = Article.all.reload
   end 
 
   def new
-    @article = Articles.new 
+    @article = Article.new
   end 
 
   def show
-    @article = Articles.find(params[:id])
+    @article = Article.find(params[:id])
   end 
 
   def create 
-    @article = Articles.new(articles_param)
+    @article = Article.new(articles_param)
+    random_username = "#{SecureRandom.hex(3)}#{SecureRandom.hex(3)}"
+    random_email = "#{SecureRandom.hex(3)}@example.com"
+    @user = User.create!(username: random_username, email: random_email)
+    @user.save 
+    @article.user = @user
     if @article.save
-      redirect_to articles_path
-    else
+      redirect_to articles_path and return
+    else 
       render :new
-    end 
-  end 
+    end
+  end
 
   def edit 
-    @article = Articles.find(params[:id])
+    @article = Article.find(params[:id])
   end 
 
   def update 
-    @article = Articles.find(params[:id])
+    @article = Article.find(params[:id])
     @article.update(articles_param)
     @article.save
     redirect_to articles_path(@article)
   end 
 
   def destroy 
-    @article = Articles.find(params[:id])
+    @article = Article.find(params[:id])
     @article.destroy 
     redirect_to articles_path
   end
 
+private
   def articles_param
     params.require(:articles).permit(:title, :description)
-  end 
+  end  
 end 

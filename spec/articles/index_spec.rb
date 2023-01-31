@@ -13,7 +13,9 @@ RSpec.describe "Article Index Page", type: :feature do
     end 
 
     it 'has a list of all articles' do 
-      article_1 = Articles.create!(title: "1233", description: "fewafewafawefwaf")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
+     
       visit articles_path
       
       expect(page).to have_content(article_1.title)
