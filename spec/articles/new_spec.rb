@@ -11,7 +11,7 @@ RSpec.describe "Articles", type: :feature do
 
     it "create a new article" do 
       visit new_article_path
-      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com", password_digest: "my password")
       
       
       fill_in 'Title', with: 'my first blog post'
@@ -25,7 +25,7 @@ RSpec.describe "Articles", type: :feature do
     end 
 
     it 'back link to articles index page' do 
-      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com", password_digest: "my password")
       article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
 
       visit new_article_path

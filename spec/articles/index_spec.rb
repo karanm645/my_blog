@@ -13,7 +13,7 @@ RSpec.describe "Article Index Page", type: :feature do
     end 
 
     it 'has a list of all articles' do 
-      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com", password_digest: "my password")
       article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
      
       visit articles_path
@@ -22,7 +22,7 @@ RSpec.describe "Article Index Page", type: :feature do
     end 
     
     it 'shows user info in index page' do 
-      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com", password_digest: "my password")
       article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
       
       visit articles_path

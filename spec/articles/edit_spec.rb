@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Edit Article', type: :feature do 
   describe 'when I visit the article show page' do 
     it 'has a link to edit the article' do 
-      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com", password_digest: "my password")
       article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
       visit articles_path
 
@@ -20,7 +20,7 @@ RSpec.describe 'Edit Article', type: :feature do
     end 
 
     it 'back link to articles index page' do 
-      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com", password_digest: "my password")
       article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
 
       visit edit_article_path(article_1.id)

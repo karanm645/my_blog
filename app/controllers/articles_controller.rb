@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(articles_param)
     random_username = "#{SecureRandom.hex(3)}#{SecureRandom.hex(3)}"
     random_email = "#{SecureRandom.hex(3)}@example.com"
-    @user = User.create!(username: random_username, email: random_email)
+    @user = User.create!(username: random_username, email: random_email, password: "my password 2")
     @user.save 
     @article.user = @user
     if @article.save

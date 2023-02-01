@@ -4,7 +4,7 @@ RSpec.describe "Article Show Page", type: :feature do
   describe "when i visit the articles show page" do 
     
     it "shows the article title and description" do 
-      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com", password_digest: "my password")
       article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
       
       visit articles_path 
@@ -17,7 +17,7 @@ RSpec.describe "Article Show Page", type: :feature do
     end
 
     it 'back link to articles index page' do 
-      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com", password_digest: "my password")
       article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
 
       visit article_path(article_1.id)
@@ -27,7 +27,7 @@ RSpec.describe "Article Show Page", type: :feature do
     end 
 
     it 'has a link to edit the article' do 
-      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com")
+      user_1 = User.create!(username: "karan443", email: "karanm645@gmail.com", password_digest: "my password")
       article_1 = Article.create!(title: "1233", description: "fewafewafawefwaf", user_id: user_1.id)
       
       visit article_path(article_1.id)
