@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
 
   root 'pages#index'
-
   get 'about', to: 'pages#about'
-
+  get 'signup', to: 'users#new'
   resources :articles, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :users, except: [:new]
 end
