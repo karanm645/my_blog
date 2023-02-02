@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.all
+    @article = Article.find_by(params[:user_id])
+  end 
+  
   def new 
     @user = User.new
   end 
