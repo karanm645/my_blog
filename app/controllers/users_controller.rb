@@ -8,15 +8,16 @@ class UsersController < ApplicationController
     @user = User.new
   end 
 
-def show
-  @user = User.find(params[:id])
- end
+  def show
+    @user = User.find(params[:id])
+  end
 
   def create
     @user = User.new(user_params)
+    # @article = Article.find_by(params[:user_id])
     if @user.save
-      flash[:success] = "Welcome to my blog #{@user.username}"
-      redirect_to articles_path and return
+      # flash[:success] = "Welcome to my blog #{@user.username}"
+      redirect_to user_path(@user) and return
     else
       render 'new'
     end

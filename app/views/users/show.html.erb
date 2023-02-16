@@ -1,8 +1,11 @@
+<%= render 'layouts/navigation' %>
 <h1 align="center">Welcome to <%= @user.username %>'s page</h1>
-<div class="row">
- <div class="col-md-4 col-md-offset-4 center">
+<div class="row" h-100>
+ <div class="col-md-4 mx-auto my-auto text-center">
   <%= gravatar_for @user, size: 150 %>
  </div>
 </div>
-<h4 align="center"><%= @user.username %>'s articles</h4>
+<h4 align="center"><%= @user.username %>'s articles:</h4>
+
+<%= link_to "Create Article",  new_article_path, class: "btn btn-xs btn-success my-2" %>
 <%= render 'shared/article', obj: @user.articles %>
