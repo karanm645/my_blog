@@ -2,22 +2,23 @@ class ArticlesController < ApplicationController
   def index 
     @articles = Article.all.reload
   end 
+  
+  def show
+    @article = Article.find_by(params[:user_id])
+    @user = current_user
+    @article.user = @user 
+  end 
 
   def new
     @article = Article.new
+    @user = current_user
+    # @user = User.find_by(params[:id])
   end 
 
-  def show
-    @article = Article.find(params[:id])
-  end 
 
   def create 
     @article = Article.new(articles_param)
-    @user = User.find_by(params[:id])
-    # random_username = "#{SecureRandom.hex(3)}#{SecureRandom.hex(3)}"
-    # random_email = "#{SecureRandom.hex(3)}@example.com"
-    # @user = User.create!(username: random_username, email: random_email, password: "my password 2")
-    # @user.save 
+    @user = current_user
     @article.user = @user
     if @article.save
       redirect_to articles_path and return
@@ -39,8 +40,13 @@ class ArticlesController < ApplicationController
 
   def destroy 
     @article = Article.find(params[:id])
-    @article.destroy 
-    redirect_to articles_path
+    if @article.user == current_user
+      @article.destroy
+      redirect_to articles_path
+    else 
+      redirect_to articles_path
+      flash[:alert] = "You are not authorzied to delete this article"
+    end 
   end
 
 private
