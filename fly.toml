@@ -48,3 +48,16 @@ processes = []
 [[statics]]
   guest_path = "/app/public"
   url_prefix = "/"
+
+[[services]]
+  internal_port = 5432
+  protocol = "tcp"
+
+  [services.concurrency]
+    hard_limit = 5
+    soft_limit = 3
+
+  [services.env]
+    POSTGRES_DB = "karansblog-name"
+    POSTGRES_USER = "karansblog-user"
+    POSTGRES_PASSWORD = "karansblog-password"
